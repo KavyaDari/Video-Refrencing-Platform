@@ -1,98 +1,290 @@
-# Zoom Web Clone
+# 🎥 Video Referencing Platform
 
-A production-quality video conferencing web application inspired by Zoom. Built with modern web technologies focusing on clean architecture, responsive UI, and robust backend services.
+A full-stack video referencing and meeting management platform built with **Next.js**, **FastAPI**, **SQLAlchemy**, and **JWT Authentication**. Users can securely register, log in, create meetings, join meetings, and manage their meeting history through a modern and responsive interface.
 
-## Screenshots
+---
 
-![Dashboard Placeholder](/placeholders/dashboard.png)
-*Figure 1: The Main Dashboard for joining and scheduling meetings.*
+## 🚀 Live Demo
 
-![Meeting Room Placeholder](/placeholders/meeting-room.png)
-*Figure 2: The Dark-themed Video Meeting Room.*
+### Frontend
+https://video-refrencing-platform.vercel.app
 
-## Architecture
+### Backend API (Swagger)
+https://video-refrencing-platform.onrender.com/docs
 
-This project strictly adheres to **Clean Architecture** principles to ensure scalability, testability, and separation of concerns.
+---
 
-* **Frontend**: Built with **Next.js 15 (App Router)** and **React**. The UI is constructed using **Tailwind CSS** and custom primitives inspired by **shadcn/ui**. State management and data fetching rely on React Hooks and **Axios**. Form validation is strictly enforced on the client side using **React Hook Form** and **Zod**.
-* **Backend**: Powered by **FastAPI** leveraging asynchronous Python 3.11 features. 
-  * **Controllers (Routers)**: Thin layers defining HTTP endpoints.
-  * **Services**: Contain all core business logic (validation, orchestration).
-  * **Repositories**: Abstract raw database operations.
-  * **Schemas**: Pydantic models for strict I/O validation.
-* **Database**: **SQLite** managed via **SQLAlchemy ORM** with **Alembic** handling migration tracking.
+## ✨ Features
 
-## Folder Structure
+### Authentication
+- User Registration
+- User Login
+- JWT-based Authentication
+- Secure Password Hashing using Passlib & Bcrypt
+- Protected Routes
 
-```text
-├── frontend/                     # Next.js Application
-│   ├── app/                      # App Router definitions
-│   ├── components/               # React UI Components
-│   │   ├── layout/               # Navbars, Wrappers
-│   │   ├── meeting/              # Dashboard tiles, Modals
-│   │   ├── meeting_room/         # Dark-themed Room UI
-│   │   └── ui/                   # Primitive abstractions (Buttons, Cards)
-│   ├── services/                 # Axios clients
-│   └── styles/                   # Tailwind globals
-└── backend/                      # FastAPI Application
-    ├── app/
-    │   ├── api/                  # Route handlers
-    │   ├── core/                 # Config, Exceptions
-    │   ├── database/             # SQLAlchemy Engine
-    │   ├── models/               # DB Models (User, Meeting)
-    │   ├── repositories/         # DB Abstraction layer
-    │   ├── schemas/              # Pydantic Schemas
-    │   └── services/             # Business Logic
-    └── tests/                    # Pytest suite
+### Meeting Management
+- Create New Meetings
+- Join Existing Meetings
+- View Upcoming Meetings
+- View Recent Meetings
+- End Meetings
+- Copy Meeting Links
+
+### Dashboard
+- Personalized Dashboard
+- Meeting History
+- Responsive UI
+- User Profile Section
+
+### Security
+- JWT Authentication
+- Password Hashing
+- CORS Configuration
+- Input Validation using Pydantic
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Axios
+
+## Backend
+- FastAPI
+- SQLAlchemy
+- SQLite
+- Pydantic
+- Passlib
+- Bcrypt
+- Python-JOSE (JWT)
+
+## Deployment
+- Frontend: Vercel
+- Backend: Render
+
+---
+
+# 📂 Project Structure
+
+```
+Video-Refrencing-Platform/
+│
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── core/
+│   │   ├── crud/
+│   │   ├── db/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   └── services/
+│   ├── main.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── app/
+│   ├── components/
+│   ├── hooks/
+│   ├── services/
+│   ├── public/
+│   └── package.json
+│
+└── README.md
 ```
 
-## Installation
+---
 
-### Prerequisites
-- Node.js >= 18
-- Python 3.11
+# ⚙️ Installation
 
-### 1. Running the Backend
+## Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/Video-Refrencing-Platform.git
+cd Video-Refrencing-Platform
+```
+
+---
+
+# Backend Setup
 
 ```bash
 cd backend
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Mac/Linux
-source venv/bin/activate
 
-pip install -r requirements.txt # (Contains fastapi, uvicorn, sqlalchemy, alembic)
-alembic upgrade head
-uvicorn main:app --reload --port 8000
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# Linux/Mac
+source .venv/bin/activate
+
+pip install -r requirements.txt
+
+uvicorn main:app --reload
 ```
 
-### 2. Running the Frontend
+Backend runs at
+
+```
+http://localhost:8000
+```
+
+Swagger API
+
+```
+http://localhost:8000/docs
+```
+
+---
+
+# Frontend Setup
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
-The frontend will be available at `http://localhost:3000`.
 
-## API Documentation
+Frontend runs at
 
-The backend automatically generates interactive Swagger documentation. When the backend is running, navigate to:
-`http://localhost:8000/docs`
+```
+http://localhost:3000
+```
+
+---
+
+# Environment Variables
+
+## Backend (.env)
+
+```env
+DATABASE_URL=sqlite:///./zoom.db
+```
+
+## Frontend (.env.local)
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+For production:
+
+```env
+NEXT_PUBLIC_API_URL=https://video-refrencing-platform.onrender.com
+```
+
+---
+
+# API Endpoints
+
+## Authentication
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/meetings/create` | Instantly creates a new meeting instance. |
-| POST | `/meetings/schedule` | Schedules a meeting for a future date/time. |
-| POST | `/meetings/join` | Validates ID and attaches a participant. |
-| GET | `/meetings/upcoming` | Fetches future scheduled meetings. |
-| GET | `/meetings/recent` | Fetches past meetings. |
-| GET | `/{meeting_id}` | Retrieves specific meeting metadata. |
+|---------|----------|-------------|
+| POST | `/auth/register` | Register User |
+| POST | `/auth/login` | Login User |
 
-## Future Improvements
+---
 
-- [ ] **WebRTC Integration**: Swap the mock UI Video Tiles with actual peer-to-peer WebRTC streams using libraries like Mediasoup or LiveKit.
-- [ ] **Authentication**: Implement JWT-based auth via NextAuth.js to map users to their unique scheduled meetings dynamically.
-- [ ] **WebSockets**: Add real-time chat bridging using FastAPI WebSockets.
-- [ ] **PostgreSQL Migration**: Swap the underlying SQLite file-based DB with a fully managed PostgreSQL instance for horizontal scaling.
+## Meetings
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/meetings/` | Get Meetings |
+| POST | `/meetings/create` | Create Meeting |
+| PUT | `/meetings/{id}` | Update Meeting |
+| DELETE | `/meetings/{id}` | Delete Meeting |
+
+---
+
+# Authentication Flow
+
+1. Register a new account
+2. Login with email and password
+3. Receive JWT access token
+4. Store token on frontend
+5. Access protected APIs using Authorization header
+
+---
+
+# Screenshots
+
+Add screenshots here after deployment.
+
+Example:
+
+```
+screenshots/
+    login.png
+    dashboard.png
+    create-meeting.png
+```
+
+---
+
+# Deployment
+
+## Backend
+
+Hosted on **Render**
+
+https://video-refrencing-platform.onrender.com
+
+---
+
+## Frontend
+
+Hosted on **Vercel**
+
+https://video-refrencing-platform.vercel.app
+
+---
+
+# Challenges Solved
+
+- JWT Authentication
+- Password Hashing with Passlib & Bcrypt
+- FastAPI Deployment on Render
+- Next.js Deployment on Vercel
+- Cross-Origin Resource Sharing (CORS)
+- Environment Variable Configuration
+- API Integration
+- Pydantic Validation
+- Production Deployment Debugging
+
+---
+
+# Future Improvements
+
+- PostgreSQL Database
+- Docker Support
+- GitHub Actions CI/CD
+- Email Verification
+- Forgot Password
+- Refresh Tokens
+- Role-Based Access Control
+- Meeting Notifications
+- WebRTC-based Real-Time Video & Audio Communication
+
+---
+
+# Author
+
+**Kavya Dari**
+
+LinkedIn: https://www.linkedin.com/in/kavya-dari-2707792a7/
+
+GitHub: https://github.com/YOUR_GITHUB_USERNAME
+
+---
+
+# License
+
+This project is developed for learning, portfolio, and educational purposes.
