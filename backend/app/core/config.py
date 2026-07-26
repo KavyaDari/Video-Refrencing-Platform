@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./zoom.db")
     BACKEND_CORS_ORIGINS = [
         "http://localhost:3000",
-        "https://your-project.vercel.app",
+        "https://video-refrencing-platform.vercel.app",
     ]
     
     class Config:
