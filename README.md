@@ -1,10 +1,10 @@
-# 🎥 Video Referencing Platform
+#  Video Referencing Platform
 
 A full-stack video referencing and meeting management platform built with **Next.js**, **FastAPI**, **SQLAlchemy**, and **JWT Authentication**. Users can securely register, log in, create meetings, join meetings, and manage their meeting history through a modern and responsive interface.
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
 ### Frontend
 https://video-refrencing-platform.vercel.app
@@ -14,7 +14,7 @@ https://video-refrencing-platform.onrender.com/docs
 
 ---
 
-## ✨ Features
+##  Features
 
 ### Authentication
 - User Registration
@@ -45,7 +45,7 @@ https://video-refrencing-platform.onrender.com/docs
 
 ---
 
-# 🛠 Tech Stack
+#  Tech Stack
 
 ## Frontend
 - Next.js
@@ -69,7 +69,7 @@ https://video-refrencing-platform.onrender.com/docs
 
 ---
 
-# 📂 Project Structure
+#  Project Structure
 
 ```
 Video-Refrencing-Platform/
@@ -99,7 +99,7 @@ Video-Refrencing-Platform/
 
 ---
 
-# ⚙️ Installation
+#  Installation
 
 ## Clone Repository
 
@@ -214,20 +214,7 @@ NEXT_PUBLIC_API_URL=https://video-refrencing-platform.onrender.com
 
 ---
 
-# Screenshots
 
-Add screenshots here after deployment.
-
-Example:
-
-```
-screenshots/
-    login.png
-    dashboard.png
-    create-meeting.png
-```
-
----
 
 # Deployment
 
